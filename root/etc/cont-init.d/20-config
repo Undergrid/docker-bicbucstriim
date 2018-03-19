@@ -1,0 +1,41 @@
+#!/usr/bin/with-contenv bash
+
+#make folders
+mkdir -p \
+	/config/{apache/site-confs,keys,log/apache,www,log/php} \
+	/run/apache2
+
+#clear old pid
+[[ -e /run/apache2/httpd.pid ]] && \
+	rm /run/apache2/httpd.pid
+
+#copy config files
+[[ ! -f /config/apache/site-confs/default.conf ]] && \
+	cp /defaults/default.conf /config/apache/site-confs/default.conf
+[[ ! -f /config/apache/httpd.conf ]] && \
+	cp /defaults/httpd.conf /config/apache/httpd.conf
+
+cp /config/apache/httpd.conf /etc/apache2/httpd.conf
+
+#make symlinks
+if [ ! -e /config/www/logs -o /config/www/modules -o /config/www/run ]; then
+ln -sf /var/log/apache2 /config/www/logs
+ln -sf /usr/lib/apache2 /config/www/modules
+ln -sf /run/apache2 /config/www/run
+fi
+
+#fix timezone in php.ini
+sed -i "s#;date.timezone =.*#date.timezone = $TZ#g" /etc/php7/php.ini
+#fix php-fpm log location
+sed -i "s#;error_log = log/php7/error.log.*#error_log = /config/log/php/error.log#g" /etc/php7/php-fpm.conf
+#fix php-fpm user
+sed -i "s#user = nobody.*#user = abc#g" /etc/php7/php-fpm.d/www.conf
+sed -i "s#group = nobody.*#group = abc#g" /etc/php7/php-fpm.d/www.conf
+
+#permissions
+chown -R abc:abc \
+	/config \
+	/run/apache2
+chmod -R g+w \
+	/config/{apache,www}
+chmod -R 644 /etc/logrotate.d

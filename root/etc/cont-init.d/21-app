@@ -1,0 +1,8 @@
+#!/usr/bin/with-contenv bash
+
+#copy config files
+[[ ! -f /config/www/index.php ]] && \
+	cp -RT /app/ /config/www/
+
+#permissions
+chown -R abc:abc /config 

@@ -1,6 +1,6 @@
 
 # undergrid/bicbucstriim
-A container hosting [BicBucStriim](http://projekte.textmulch.de/bicbucstriim/) 1.4.2a using [Alpine Linux](https://alpinelinux.org/) 3.7, [Apache](https://www.apache.org/) 2.4 and PHP 7.  
+A container hosting [BicBucStriim](http://projekte.textmulch.de/bicbucstriim/) 1.5 using [Alpine Linux](https://alpinelinux.org/) 3.7, [Apache](https://www.apache.org/) 2.4 and PHP 7.  
 
 ## Usage
 ```
@@ -69,5 +69,6 @@ Monitor the logs of the container in realtime `docker logs -f apache-webdav`.
 
 ## Versions
 
-+ **19.03.17:** Initial Release - BicBucStriim version 1.4.2a
++ **06.02.19:** BicBucStriim version 1.5
++ **19.03.18:** Initial Release - BicBucStriim version 1.4.2a
 

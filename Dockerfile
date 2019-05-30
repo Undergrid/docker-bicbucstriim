@@ -19,6 +19,7 @@ RUN \
 	php7-mbstring \
 	php7-json \
 	php7-openssl \
+	php7-zip \
 	git && \
   echo "**** install app *****" && \
 	git clone https://github.com/rvolz/BicBucStriim.git /app/ && \

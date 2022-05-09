@@ -1,4 +1,4 @@
-FROM undergrid/alpine-apache
+FROM undergrid/alpine-apache:3.13
 MAINTAINER nick+docker@undergrid.org.uk
 
 #install packages
@@ -21,9 +21,7 @@ RUN \
 	php7-openssl \
 	git && \
   echo "**** install app *****" && \
-	git clone https://github.com/rvolz/BicBucStriim.git /app/ && \
-	cd /app && \
-	git checkout `git describe --tags`
+	git clone -b v1.5.3 https://github.com/rvolz/BicBucStriim.git /app/ 
 
 #add local files
 COPY root/ /

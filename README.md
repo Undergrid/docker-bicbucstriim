@@ -64,11 +64,26 @@ In the configuration page, set the "Calibre library path" to `/books/`.  Other s
 ### Email Settings
 Please note that this container does not support the 'PHP Mail' or 'Sendmail' options for sending email.  If you wish to enable 'Allow Send-To-Kindle?' your **must** select 'SMTP' for sending mail and configure the SMTP settings.
 
+## Upgrade
+
+To upgrade a current install:
+
++ Shutdown the container
++ Change to /path/to/config
++ Rename www to www.old
++ Start then Shutdown the container
++ Copy www.old/data over www/data
++ Restart container
+
+The footer of the application should now display the updated version number
+
+
 ## Info
 Monitor the logs of the container in realtime `docker logs -f apache-webdav`.
 
 ## Versions
 
++ **10.05.22:** BicBucStriim version 1.5.3
 + **06.02.19:** BicBucStriim version 1.5
 + **19.03.18:** Initial Release - BicBucStriim version 1.4.2a
 
